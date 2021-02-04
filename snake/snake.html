@@ -155,10 +155,14 @@
                     }
                     drawSnake(){
                         for (var pos of this.body){
-                            this.drawSnakeApart(pos[0],pos[1])
+                            if ( pos == this.head ){
+                                this.drawSnakeHead(this.head[0], this.head[1])
+                            }else{
+                                this.drawSnakeApart(pos[0],pos[1])
+                            }
                         }
-                        this.drawSnakeHead(this.head[0], this.head[1])
                     }
+                    
                     drawSnakeApart( x , y ){
                     	 var ampSiez = 0.65
                     	 
