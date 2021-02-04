@@ -160,8 +160,10 @@
                         this.drawSnakeHead(this.head[0], this.head[1])
                     }
                     drawSnakeApart( x , y ){
+                    	 var ampSiez = 0.65
+                    	 
                         this.ctx.beginPath();
-                        this.ctx.rect(x*this.gridSize , y*this.gridSize ,this.gridSize,this.gridSize);
+                        this.ctx.rect(x*this.gridSize+((1-ampSiez)*this.gridSize/2), y*this.gridSize+((1-ampSiez)*this.gridSize/2) ,this.gridSize*ampSiez,this.gridSize*ampSiez);
                         this.ctx.fillStyle = "#111111";
                         this.ctx.fill();
                         this.ctx.stroke();
