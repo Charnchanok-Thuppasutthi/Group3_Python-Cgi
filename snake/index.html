@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>Snake Arcade Game</title>
+            <style>
+                * { padding: 0; margin: 0; }
+                canvas { background: #eee; display: block; margin: 0 auto; }
+            </style>
+        </head>
+        <body>
+        <canvas id="myCanvas" width="300" height="300"></canvas>
+        <script>
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            
+            var img = new Image();img.onload = function() {
+                ctx.drawImage(img, 100,100 , 200 ,200 );
+                };
+                img.src = 'https://heritagetalon.org/wp-content/uploads/2016/10/reeeeeeeeeeeeeeeeee.png';
+            
+            var font1 = "50px Arial";
+            var font2 = "25px Arial";
+
+            function draw1(){
+                ctx.font = font1;
+                ctx.fillText("SNAKE", canvas.width/4, 50);
+            }
+            function draw2(){
+                ctx.font = font2;
+                ctx.fillText("Arcade Game",canvas.width/4,80);
+            }
+            draw1();
+            draw2();
+            
+        </script>
+        <button onclick="">Start Game</button>
+    </body>
+</html>
