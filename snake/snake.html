@@ -230,36 +230,27 @@
 
                 }
 
-                class InputProcessor{
+                class InputProcessor{ //control snake from keyboard input
                     constructor(){
-                    //console.log(this.paddle);
-                    document.addEventListener("keydown", this.checkInput , false);
+                    document.addEventListener("keydown", this.checkInput , false); 
                     }
-               
-                    checkInput(e){
-                        if (e.key == "ArrowRight") { 
-                            //console.log("R");
+                    checkInput(e){ //คุมงูไปในทิศทางที่คีย์บอร์ดรับค่ามา
+                        if (e.key == "ArrowRight") { //เลี้ยงขวา
                             if (game.snake.current_direction != 'left'){
                                 game.snake.turnRight();
                             }
                         }
-                        
-                        else if (e.key == "ArrowLeft") {
-                            //console.log("L");
+                        else if (e.key == "ArrowLeft") { //เลี้ยวซ้าย
                             if (game.snake.current_direction != 'right'){
                                 game.snake.turnLeft();
                             }
                         }
-
-                        else if (e.key == "ArrowUp"){
-                            //console.log("U");
+                        else if (e.key == "ArrowUp"){ //ไปข้างบน
                             if (game.snake.current_direction != 'down'){
                                 game.snake.turnUp();
                             }
                         }
-
-                        else if (e.key == "ArrowDown"){
-                            //console.log("D");
+                        else if (e.key == "ArrowDown"){ //ไข้างล่าง
                             if (game.snake.current_direction != 'up'){
                                 game.snake.turnDown();
                             }
