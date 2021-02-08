@@ -16,10 +16,10 @@
                         this.canvas = document.getElementById('myCanvas');
                         this.ctx = this.canvas.getContext("2d");
 
-                        //for grid world
+                        //แบ่งช่องตาราง
                         this.gridSize = 50 ;
-                        this.column = this.canvas.width / this.gridSize ; //13
-                        this.row = this.canvas.height / this.gridSize ; //13
+                        this.column = this.canvas.width / this.gridSize ; 
+                        this.row = this.canvas.height / this.gridSize ; 
 
                         var snake = new Snake( this.gridSize,this.row,this.column);
                         this.snake = snake ;
@@ -57,6 +57,7 @@
                             }
                         }
                     }
+                    //วาดวัตถุต่างๆบนหน้าต่างเกม
                     draw(){
                         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);    
                         if (this.fruit.eat_check(this.snake.head,this.snake.body)){
@@ -70,7 +71,7 @@
                         this.snake.drawSnake();
                     }
                 }
-
+                
                 class Snake{
                     constructor(grid,row,col){
                         this.canvas = document.getElementById('myCanvas');
@@ -83,9 +84,8 @@
                         this.row = row-1;
                         this.col = col-1;
                         this.current_direction = this.direction;
-                        //console.log('row:',this.row , 'col:' ,this.col)
-
                     }
+                    //แสดง alertbox ว่าแพ้และเล่นเกมใหม่
                     gameover(){
                         document.location.reload();
                         alert('you lose')
@@ -118,7 +118,7 @@
                         this.head = [x,y];
                     }
 
-                    
+                    //เลี้ยวไปทิศต่างๆตามที่สั่งไว้
                     turnLeft(){
                         this.direction = 'left' ;
                     }
@@ -158,6 +158,7 @@
                             //gameover method in here
                         }
                     }
+                    //วาดงูทั้งตัว
                     drawSnake(){
                         for (var pos of this.body){
                             if ( pos == this.head ){
@@ -167,7 +168,7 @@
                             }
                         }
                     }
-                    
+                    //วาดทีละส่วน
                     drawSnakeApart( x , y ){
                     	 var ampSize = 0.65
                     	 
@@ -178,6 +179,7 @@
                         this.ctx.stroke();
                         this.ctx.closePath();
                     }
+                    //วาดหัวงู
                     drawSnakeHead(x ,y) {
                         this.ctx.beginPath();
                         this.ctx.rect(x * this.gridSize, y * this.gridSize, this.gridSize, this.gridSize);
@@ -200,6 +202,7 @@
                         this.new_fruit(body);
                         this.gridSize = grid ;
                     }
+                    //วาดผลไม้
                     drawFruit(){
                         this.ctx.beginPath();
                         this.ctx.arc((this.x *this.gridSize)+(this.gridSize /2)  , (this.y *this.gridSize)+(this.gridSize /2) , this.gridSize/2 , 0 ,Math.PI*2);
@@ -255,7 +258,7 @@
                                 game.snake.turnUp();
                             }
                         }
-                        else if (e.key == "ArrowDown"){ //ไข้างล่าง
+                        else if (e.key == "ArrowDown"){ //ไปข้างล่าง
                             if (game.snake.current_direction != 'up'){
                                 game.snake.turnDown();
                             }
