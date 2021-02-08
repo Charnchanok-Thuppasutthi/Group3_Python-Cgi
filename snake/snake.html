@@ -203,9 +203,9 @@
                         this.ctx.closePath();
                     }
 
+		    // สุ่มตำแหน่งผลไม้ใหม่
                     new_fruit(body){
                         var random = true;
-                        //console.log(body)
                         while (random){
                             this.x = Math.floor(Math.random() * (this.col));
                             this.y = Math.floor(Math.random() * (this.row));
@@ -219,6 +219,7 @@
                         }
                     }
 
+		    // เช็คว่างูกินผลไม้หรือไม่ ถ้ากินให้สร้างผลไม้ผลใหม่
                     eat_check(head,body){
                         if (this.x == head[0] && this.y == head[1]){
                             this.new_fruit(body);
