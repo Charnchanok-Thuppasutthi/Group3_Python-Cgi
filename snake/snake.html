@@ -39,6 +39,8 @@
                         this.ctx.stroke();
                         this.ctx.closePath();
                     }
+                    
+                    // ใช้สำหรับเช็คการสร้างตาราง
                     drawNumber( x , y ) {
                         this.ctx.font = "20px Arial";
                         this.ctx.fillStyle = "#0095DD";
@@ -89,12 +91,14 @@
                         alert('you lose')
                     }
 
+		     //  ถ้างูกินตัวเองให้ game over
                     border_check(){
                         if (this.head[0] < 0 || this.head[0] > this.col || this.head[1] < 0 || this.head[1] > this.row){
                             this.gameover()
                         }
                     }
 
+		    //  เคลื่อนที่งูไปข้างหน้าตามทิศของหัวงู
                     mv(){
                         var x = this.head[0];
                         var y = this.head[1];
@@ -139,6 +143,7 @@
                         this.self_coalition_check();
                     }
 
+		    //  ให้งูตัวยาวขึ้นเมื่อกินผลไม้
                     eat_fruit(){
                         this.mv();
                         this.body.push(this.head);
