@@ -91,7 +91,7 @@
                         alert('you lose')
                     }
 
-		     //  ถ้างูกินตัวเองให้ game over
+		     //  ถ้างูชนขอบให้ game over
                     border_check(){
                         if (this.head[0] < 0 || this.head[0] > this.col || this.head[1] < 0 || this.head[1] > this.row){
                             this.gameover()
@@ -143,7 +143,19 @@
                         this.self_coalition_check();
                     }
 
-		    //  ให้งูตัวยาวขึ้นเมื่อกินผลไม้
+                    moveTo(x, y) {
+                      var snakeX = this.head[0];
+                      var snakeY = this.head[1];
+                      // not finish
+                      /*if (this.direction == 'left') {
+                        if ()
+                      }*/
+                        
+                    }
+
+                    
+                    
+                    //  ให้งูตัวยาวขึ้นเมื่อกินผลไม้
                     eat_fruit(){
                         this.mv();
                         this.body.push(this.head);
@@ -240,7 +252,8 @@
 
                 class InputProcessor{ //control snake from keyboard input
                     constructor(){
-                    document.addEventListener("keydown", this.checkInput , false); 
+                      document.addEventListener("keydown", this.checkInput, false); 
+                      document.addEventListener("mousemove", this.mouseMoveHandler, false);
                     }
                     checkInput(e){ //คุมงูไปในทิศทางที่คีย์บอร์ดรับค่ามา
                         if (e.key == "ArrowRight") { //เลี้ยงขวา
@@ -263,7 +276,16 @@
                                 game.snake.turnDown();
                             }
                         }
-                   }
+                    }
+
+                    mouseMoveHandler(e) {
+                      var relativeX = e.clientX - game.canvas.offsetLeft;
+                      var relativeY = e.clienty - game.canvas.offsetTop;
+                        // ตรวจสอบว่า mouseX อยู่ใน  canvas หรือไม่
+                      if ((relativeX > 0 && relativeX < game.canvas.width) && (relativeY > 0 && relativeY < game.canvas.Top )) {
+                         game.snake.moveTo(relativeX, relativeY);  // move to mouse
+                        }
+                    }
                 }
                 var game = new Main();
                 function Run(){

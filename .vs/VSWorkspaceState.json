@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\breakout2D",
-    "\\cgi-bin"
+    "\\cgi-bin",
+    "\\snake"
   ],
-  "SelectedNode": "\\breakout2D\\breakoutWIthClass.html",
+  "SelectedNode": "\\snake\\index.html",
   "PreviewInSolutionExplorer": false
 }
