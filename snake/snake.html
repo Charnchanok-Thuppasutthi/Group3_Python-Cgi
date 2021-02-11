@@ -280,10 +280,11 @@
 
                     mouseMoveHandler(e) {
                       var relativeX = e.clientX - game.canvas.offsetLeft;
-                      var relativeY = e.clienty - game.canvas.offsetTop;
+                      var relativeY = e.clientY - game.canvas.offsetTop;   
                         // ตรวจสอบว่า mouseX อยู่ใน  canvas หรือไม่
-                      if ((relativeX > 0 && relativeX < game.canvas.width) && (relativeY > 0 && relativeY < game.canvas.Top )) {
-                         game.snake.moveTo(relativeX, relativeY);  // move to mouse
+                      if ((relativeX > 0 && relativeX < game.canvas.width) && (relativeY > 0 && relativeY < game.canvas.height )) {
+                        game.snake.moveTo(relativeX, relativeY);  // move to mouse
+                        console.log(relativeX, relativeY)
                         }
                     }
                 }
