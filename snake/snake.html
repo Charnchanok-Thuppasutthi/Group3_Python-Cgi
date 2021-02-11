@@ -6,6 +6,18 @@
             <style>
                 * { padding: 0; margin: 0; }
                 canvas { background: #eee; display: block; margin: 0 auto; }
+              .restartButton {
+                border: none;
+                color: #000000;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 30px 700px;
+                cursor: pointer;
+                background-color: #6495ED;
+              }
             </style>
         </head>
         <body>
@@ -327,6 +339,12 @@
                     game.draw();
                 }
                 setInterval(Run, 500); //รันตัวเกม
-            </script>   
+            </script>  
+            <input class="restartButton" type="button" onclick="restart()" value="restart">
+            <script>
+              function restart() {
+                document.location.reload();
+              }
+            </script>
         </body>
     </html>
