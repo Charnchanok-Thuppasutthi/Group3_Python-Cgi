@@ -84,6 +84,7 @@
                         this.row = row-1;
                         this.col = col-1;
                         this.current_direction = this.direction;
+                        this.mouse = 1; // 0 cant turn, 1 can turn, สำหรับใช้ mouse ควบคุม
                     }
                     //แสดง alertbox ว่าแพ้และเล่นเกมใหม่
                     gameover(){
@@ -91,7 +92,7 @@
                         alert('you lose')
                     }
 
-		     //  ถ้างูชนขอบให้ game over
+		                //  ถ้างูชนขอบให้ game over
                     border_check(){
                         if (this.head[0] < 0 || this.head[0] > this.col || this.head[1] < 0 || this.head[1] > this.row){
                             this.gameover()
@@ -120,19 +121,23 @@
 
                     //เลี้ยวไปทิศต่างๆตามที่สั่งไว้
                     turnLeft(){
-                        this.direction = 'left' ;
+                      this.direction = 'left';
+                      console.log("LEFT");
                     }
                     
                     turnRight(){
-                        this.direction = 'right' ;
+                      this.direction = 'right';
+                      console.log("RIGHT");
                     }
 
                     turnDown(){
-                        this.direction = 'down' ;
+                      this.direction = 'down';
+                      console.log("DOWN");
                     }
                     
                     turnUp(){
-                        this.direction = 'up' ;
+                      this.direction = 'up';
+                      console.log("UP");
                     }
                     // when eat a fruit the tail will remain in the same position and move only the head
                     move(){
@@ -141,16 +146,31 @@
                         this.body.shift(); //remove the old tail position
                         this.body.push(this.head); //move the head to new (x,y)
                         this.self_coalition_check();
+                        this.mouse = 1;  // ควบคุมด้วย mouse ได้
                     }
 
                     moveTo(x, y) {
-                      var snakeX = this.head[0];
-                      var snakeY = this.head[1];
+                      var snakeX = (this.head[0] * this.gridSize) + this.gridSize/2;  // หาตำแหน่งตรงกลางของหัวงู
+                      var snakeY = (this.head[1] * this.gridSize) + this.gridSize / 2;
                       // not finish
-                      /*if (this.direction == 'left') {
-                        if ()
-                      }*/
-                        
+                        // this.mouse=1 คือให้คุมด้วย mouse ได้
+                        if ((this.direction == 'left' || this.direction == 'right') && this.mouse == 1) {
+                            this.mouse = 0;
+                            if (snakeY < y) {
+                              this.turnDown();
+                            } else if (snakeY > y) {
+                              this.turnUp();
+                            }
+                          }
+                        if ((this.direction == 'up' || this.direction == 'down') && this.mouse == 1) {
+                            this.mouse = 0;
+                            if (snakeX < x) {
+                              this.turnRight();
+
+                            } else if (snakeX > x) {
+                              this.turnLeft();
+                            }
+                        }                      
                     }
 
                     
@@ -255,7 +275,8 @@
                       document.addEventListener("keydown", this.checkInput, false); 
                       document.addEventListener("mousemove", this.mouseMoveHandler, false);
                     }
-                    checkInput(e){ //คุมงูไปในทิศทางที่คีย์บอร์ดรับค่ามา
+                    checkInput(e) { //คุมงูไปในทิศทางที่คีย์บอร์ดรับค่ามา
+                        game.snake.mouse = 0 // หยุดควบคุมด้วย mouse
                         if (e.key == "ArrowRight") { //เลี้ยงขวา
                             if (game.snake.current_direction != 'left'){
                                 game.snake.turnRight();
@@ -284,7 +305,6 @@
                         // ตรวจสอบว่า mouseX อยู่ใน  canvas หรือไม่
                       if ((relativeX > 0 && relativeX < game.canvas.width) && (relativeY > 0 && relativeY < game.canvas.height )) {
                         game.snake.moveTo(relativeX, relativeY);  // move to mouse
-                        console.log(relativeX, relativeY)
                         }
                     }
                 }
