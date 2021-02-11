@@ -15,6 +15,7 @@
                     constructor(){
                         this.canvas = document.getElementById('myCanvas');
                         this.ctx = this.canvas.getContext("2d");
+                        this.life = 1;  // เริ่มเกมงู
 
                         //แบ่งช่องตาราง
                         this.gridSize = 50 ;
@@ -57,18 +58,20 @@
                             }
                         }
                     }
-                    //วาดวัตถุต่างๆบนหน้าต่างเกม
+                    //วาดวัตถุต่างๆและดำเนินเกม
                     draw(){
-                        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);    
-                        if (this.fruit.eat_check(this.snake.head,this.snake.body)){
-                            this.snake.eat_fruit();
-                        }else{
-                            this.snake.move();
+                      if (this.life != 0) {  // เช็คว่างูตายหรือยัง
+                        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                        if (this.fruit.eat_check(this.snake.head, this.snake.body)) {
+                          this.snake.eat_fruit();
+                        } else {
+                          this.snake.move();
                         }
                         this.snake.current_direction = this.snake.direction;
                         this.createWorld();
                         this.fruit.drawFruit();
                         this.snake.drawSnake();
+                      }
                     }
                 }
                 
@@ -89,6 +92,7 @@
                     //แสดง alertbox ว่าแพ้และเล่นเกมใหม่
                     gameover(){
                         document.location.reload();
+                        //game.life = 0;
                         alert('you lose')
                     }
 
@@ -152,22 +156,23 @@
                     moveTo(x, y) {
                       var snakeX = (this.head[0] * this.gridSize) + this.gridSize/2;  // หาตำแหน่งตรงกลางของหัวงู
                       var snakeY = (this.head[1] * this.gridSize) + this.gridSize / 2;
-                      // not finish
-                        // this.mouse=1 คือให้คุมด้วย mouse ได้
+
+                        /*this.mouse=1 คือให้คุมด้วย mouse ได้*/
+                        
                         if ((this.direction == 'left' || this.direction == 'right') && this.mouse == 1) {
                             this.mouse = 0;
-                            if (snakeY < y) {
+                            if (snakeY < y - this.gridSize/2) {
                               this.turnDown();
-                            } else if (snakeY > y) {
+                            } else if (snakeY > y + this.gridSize / 2) {
                               this.turnUp();
                             }
                           }
                         if ((this.direction == 'up' || this.direction == 'down') && this.mouse == 1) {
                             this.mouse = 0;
-                            if (snakeX < x) {
+                            if (snakeX < x - this.gridSize/2 ) {
                               this.turnRight();
 
-                            } else if (snakeX > x) {
+                            } else if (snakeX > x + this.gridSize/2) {
                               this.turnLeft();
                             }
                         }                      
