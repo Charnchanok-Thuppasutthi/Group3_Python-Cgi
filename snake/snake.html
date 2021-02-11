@@ -71,6 +71,8 @@
                         this.createWorld();
                         this.fruit.drawFruit();
                         this.snake.drawSnake();
+                        this.snake.border_check();
+                        this.snake.self_coalition_check();
                       }
                     }
                 }
@@ -91,9 +93,16 @@
                     }
                     //แสดง alertbox ว่าแพ้และเล่นเกมใหม่
                     gameover(){
-                        document.location.reload();
-                        //game.life = 0;
-                        alert('you lose')
+                        //document.location.reload();
+                        //alert('you lose')
+                        game.life = 0;  // stop game
+
+                        //  Show text GAME OVER
+                        this.ctx.font = "64px Arial";
+                        this.ctx.fillStyle = "#FF0040";
+                        this.ctx.fillText("GAME OVER", this.canvas.width/2-200, this.canvas.height/2);
+        
+                        
                     }
 
 		                //  ถ้างูชนขอบให้ game over
@@ -146,10 +155,10 @@
                     // when eat a fruit the tail will remain in the same position and move only the head
                     move(){
                         this.mv();
-                        this.border_check();
+                        //this.border_check();  // ย้ายไปเช็คใน main
                         this.body.shift(); //remove the old tail position
                         this.body.push(this.head); //move the head to new (x,y)
-                        this.self_coalition_check();
+                        //this.self_coalition_check();  // ย้ายไปเช็คใน main
                         this.mouse = 1;  // ควบคุมด้วย mouse ได้
                     }
 
